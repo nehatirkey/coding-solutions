@@ -1,4 +1,4 @@
-# Java Comparator
+# Java Sort
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -33,19 +33,70 @@ After rearranging the students according to the above rules, print the first nam
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-30T20:43:56.326Z  
+**Submitted:** 2026-10-30T20:49:43.782Z  
 
 ```java
+import java.util.*;
 
+class Student{
+    private int id;
+    private String fname;
+    private double cgpa;
+    public Student(int id, String fname, double cgpa) {
+        super();
+        this.id = id;
+        this.fname = fname;
+        this.cgpa = cgpa;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getFname() {
+        return fname;
+    }
+    public double getCgpa() {
+        return cgpa;
+    }
+}
 
-class Checker implements Comparator<Player> {
-    @Override
-    public int compare(Player a, Player b ) {
-        if (b.score != a.score) {
-            return b.score - a.score; // Descending order of score
-        } else {
-            return a.name.compareTo(b.name); // Alphabetical order of name
+public class Solution
+{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int testCases = Integer.parseInt(in.nextLine());
+        
+        List<Student> studentList = new ArrayList<Student>();
+        while(testCases > 0){
+            int id = in.nextInt();
+            String fname = in.next();
+            double cgpa = in.nextDouble();
+            
+            Student st = new Student(id, fname, cgpa);
+            studentList.add(st);
+            
+            testCases--;
         }
+        
+        // Sorting logic moved inside main
+        Collections.sort(studentList, new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                if (Double.compare(s2.getCgpa(), s1.getCgpa()) != 0) {
+                    return Double.compare(s2.getCgpa(), s1.getCgpa());
+                } else if (!s1.getFname().equals(s2.getFname())) {
+                    return s1.getFname().compareTo(s2.getFname());
+                } else {
+                    return Integer.compare(s1.getId(), s2.getId());
+                }
+            }
+        });
+        
+        // Printing the sorted list
+        for(Student st: studentList){
+            System.out.println(st.getFname());
+        }
+        
+        in.close();
     }
 }
 
