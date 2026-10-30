@@ -1,4 +1,4 @@
-# Java Stdin and Stdout I
+# Java Output Formatting
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -24,25 +24,25 @@ The second column contains the *integer*, expressed in exactly $3$ digits; if th
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-30T05:15:43.663Z  
+**Submitted:** 2026-10-30T20:30:39.147Z  
 
 ```java
-import java.util.*;
+import java.util.Scanner;
 
 public class Solution {
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int a = scan.nextInt();
-        int b = scan.nextInt();
-        int c = scan.nextInt();
-        scan.close();
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
-        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("================================");
+        for(int i = 0; i < 3; i++) {
+            String s1 = sc.next();
+            int x = sc.nextInt();
+            System.out.printf("%-15s%03d%n", s1, x);
+        }
+        System.out.println("================================");
     }
 }
+
 
 ```
 
