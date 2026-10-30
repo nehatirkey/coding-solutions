@@ -1,4 +1,4 @@
-# Java Date and Time
+# Java Currency Formatter
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Medium-yellow)
 
@@ -35,34 +35,34 @@ On the fourth line, print `France: f`, where $f$ is $payment$ formatted for Fren
 **Language:** Java  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-30T20:36:42.298Z  
+**Submitted:** 2026-10-30T20:38:26.242Z  
 
 ```java
+import java.util.*;
+import java.text.*;
 
+public class Solution {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+        
+        NumberFormat usF = NumberFormat.getCurrencyInstance(Locale.US);
+        NumberFormat indiaF = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+        NumberFormat chinaF = NumberFormat.getCurrencyInstance(Locale.CHINA);
+        NumberFormat franceF = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 
-class Result {
-
-    /*
-     * Complete the 'findDay' function below.
-     *
-     * The function is expected to return a STRING.
-     * The function accepts following parameters:
-     *  1. INTEGER month
-     *  2. INTEGER day
-     *  3. INTEGER year
-     */
-
-    public static String findDay(int month, int day, int year) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month - 1, day);
-        String[] dayNames = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"};
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-        return dayNames[dayOfWeek - 1];
-
+        String us = usF.format(payment);
+        String india = indiaF.format(payment);
+        String china = chinaF.format(payment);
+        String france = franceF.format(payment);
+        System.out.println("US: " + us);
+        System.out.println("India: " + india);
+        System.out.println("China: " + china);
+        System.out.println("France: " + france);
     }
-
 }
-
 
 ```
 
